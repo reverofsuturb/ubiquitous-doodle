@@ -10,7 +10,7 @@ page = requests.get(url)
 soup = BeautifulSoup(page.text, "html")
 
 cwd = os.getcwd()
-path = cwd + "/new.csv"
+# path = cwd + "/new.csv"
 
 table = soup.find_all("table")[0]
 

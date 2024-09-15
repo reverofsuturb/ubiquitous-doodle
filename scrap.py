@@ -2,21 +2,24 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import os
+from requests_html import HTMLSession
 
-url = "https://poe.ninja/economy/settlers/skill-gems?level=1&gemType=Transfigured"
+session = HTMLSession()
+
+url = session.get("https://poe.ninja/economy/settlers/skill-gems?level=1&gemType=Transfigured")
 
 page = requests.get(url)
 
 soup = BeautifulSoup(page.text, "html")
-
+print(soup)
 cwd = os.getcwd()
 # path = cwd + "/new.csv"
 
-table = soup.find_all("table")
-
-table_titles = table.find_all("th")[1:9]
-
-column_titles = [title.text.strip() for title in table_titles]
+# table = soup.find_all("table")
+#
+# table_titles = table.find_all("th")
+#
+# column_titles = [title.text.strip() for title in table_titles]
 
 
 print(column_titles)

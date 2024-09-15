@@ -2,17 +2,35 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import os
-from requests_html import HTMLSession
+from requests_html import AsyncHTMLSession, HTMLSession
 
+asession = AsyncHTMLSession()
 session = HTMLSession()
 
-url = session.get("https://poe.ninja/economy/settlers/skill-gems?level=1&gemType=Transfigured")
 
-page = requests.get(url)
+# async def get_data():
+#     url = await asession.get(
+#         "https://poe.ninja/economy/settlers/skill-gems?level=1&gemType=Transfigured"
+#     )
+#     print(url.html.links)
 
-soup = BeautifulSoup(page.text, "html")
+
+# res = asession.run(get_data)
+
+
+r = session.get(
+    "https://poe.ninja/economy/settlers/skill-gems?level=1&gemType=Transfigured"
+)
+# print(res)
+r.html.render()
+page = r.html.text
+# page = requests.get(url)
+
+soup = BeautifulSoup(page, "html")
 print(soup)
-cwd = os.getcwd()
+# soup = r.html.find('th')
+# print(soup)
+# cwd = os.getcwd()
 # path = cwd + "/new.csv"
 
 # table = soup.find_all("table")
@@ -22,7 +40,7 @@ cwd = os.getcwd()
 # column_titles = [title.text.strip() for title in table_titles]
 
 
-print(column_titles)
+# print(column_titles)
 
 # df = pd.DataFrame(columns=column_titles)
 

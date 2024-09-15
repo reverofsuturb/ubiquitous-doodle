@@ -23,23 +23,24 @@ r = session.get(
 )
 # print(res)
 r.html.render()
-page = r.html.text
+table = r.html.find("table")
 # page = requests.get(url)
-
-soup = BeautifulSoup(page, "html")
-print(soup)
-# soup = r.html.find('th')
+print(table)
+# soup = BeautifulSoup(page, "html")
 # print(soup)
+
+
 # cwd = os.getcwd()
 # path = cwd + "/new.csv"
 
 # table = soup.find_all("table")
-#
+
+# print(table)
 # table_titles = table.find_all("th")
-#
+
 # column_titles = [title.text.strip() for title in table_titles]
 
-
+# print(table_titles)
 # print(column_titles)
 
 # df = pd.DataFrame(columns=column_titles)
